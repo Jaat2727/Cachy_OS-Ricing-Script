@@ -115,6 +115,9 @@ AUR_PKGS=(
     adw-gtk3
     wlogout
     rofi-wayland
+    whitesur-gtk-theme-git
+    whitesur-icon-theme-git
+    macos-bigsur-cursor-theme-git
 )
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -175,6 +178,22 @@ yay -S --needed --noconfirm "${AUR_PKGS[@]}" || {
 }
 
 success "Package installation complete!"
+
+# D-Bus and portal setup
+systemctl --user enable --now xdg-desktop-portal-hyprland || true
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=Hyprland || true
+
+# macOS fonts/cursor
+yay -S --noconfirm apple-fonts ttf-sf-pro 2>/dev/null || true
+yay -S --noconfirm apple-cursor 2>/dev/null || true
+mkdir -p ~/.icons/default
+echo -e "[Icon Theme]\nInherits=macOS-BigSur" > ~/.icons/default/index.theme
+
+# ensure swww daemon running
+if ! pgrep -x swww-daemon > /dev/null; then
+  swww-daemon --no-cache &
+  sleep 1
+fi
 
 # ──────────────────────────────────────────────────────────────────────────────
 # STEP 3: Backup existing config
@@ -255,47 +274,17 @@ fi
 # ──────────────────────────────────────────────────────────────────────────────
 step "6/6" "Setting script permissions"
 
-SCRIPT_COUNT=0
+doing "Making all shell scripts executable..."
+find ~/.config -name "*.sh" -exec chmod +x {} \;
+success "All shell scripts under ~/.config are executable"
 
-# Hypr directory scripts
-doing "Making hypr scripts executable..."
-for script in "$HOME/.config/hypr"/*.sh; do
-    if [ -f "$script" ]; then
-        chmod +x "$script"
-        echo -e "    ${GREEN}+x${RESET} ${DIM}$(basename "$script")${RESET}"
-        SCRIPT_COUNT=$((SCRIPT_COUNT + 1))
-    fi
-done
-
-# Hypr/scripts subdirectory
-for script in "$HOME/.config/hypr/scripts"/*.sh; do
-    if [ -f "$script" ]; then
-        chmod +x "$script"
-        echo -e "    ${GREEN}+x${RESET} ${DIM}$(basename "$script")${RESET}"
-        SCRIPT_COUNT=$((SCRIPT_COUNT + 1))
-    fi
-done
-
-# Matugen hooks
-doing "Making matugen hooks executable..."
-for script in "$HOME/.config/matugen/hooks"/*.sh; do
-    if [ -f "$script" ]; then
-        chmod +x "$script"
-        echo -e "    ${GREEN}+x${RESET} ${DIM}$(basename "$script")${RESET}"
-        SCRIPT_COUNT=$((SCRIPT_COUNT + 1))
-    fi
-done
-
-# Waybar scripts (kept for rollback)
-for script in "$HOME/.config/waybar/scripts"/*.sh; do
-    if [ -f "$script" ]; then
-        chmod +x "$script"
-        echo -e "    ${GREEN}+x${RESET} ${DIM}$(basename "$script")${RESET}"
-        SCRIPT_COUNT=$((SCRIPT_COUNT + 1))
-    fi
-done
-
-success "$SCRIPT_COUNT scripts made executable"
+echo "=== checking for common issues ==="
+command -v ags      && echo "ok: ags"      || echo "MISSING: ags"
+command -v swww     && echo "ok: swww"     || echo "MISSING: swww"
+command -v matugen  && echo "ok: matugen"  || echo "MISSING: matugen"
+command -v fuzzel   && echo "ok: fuzzel"   || echo "MISSING: fuzzel"
+command -v swaync   && echo "ok: swaync"   || echo "MISSING: swaync"
+hyprctl version     && echo "ok: hyprland" || echo "MISSING: hyprland"
 
 # ═════════════════════════════════════════════════════════════════════════════
 # DONE
