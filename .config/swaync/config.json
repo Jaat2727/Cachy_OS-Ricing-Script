@@ -1,6 +1,4 @@
 {
-  "$schema": "/etc/xdg/swaync/configSchema.json",
-
   "positionX": "right",
   "positionY": "top",
   "layer": "overlay",
@@ -42,10 +40,10 @@
     "title": {
       "text": "Control Center",
       "clear-all-button": true,
-      "button-text": " Clear"
+      "button-text": "Clear"
     },
     "dnd": {
-      "text": " Do Not Disturb"
+      "text": "Do Not Disturb"
     },
     "mpris": {
       "image-size": 96,

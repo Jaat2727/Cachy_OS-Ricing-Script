@@ -35,9 +35,6 @@ input_path = '~/.config/nvim/template.lua'
 output_path = '~/.config/nvim/generated.lua'
 post_hook = 'pkill -SIGUSR1 nvim'
 
-[templates.spicetify]
-input_path = '~/.config/matugen/templates/spotify-colors.ini'
-output_path = '~/.config/spicetify/Themes/text/color-matugen.ini'
 
 
 [templates.gtk3]
