@@ -22,7 +22,7 @@ post_hook = "~/.config/matugen/hooks/reload-kitty.sh"
 
 
 [templates.waybar]
-input_path = '~/.config/matugen/templates/colors.css'
+input_path = '~/.config/matugen/templates/waybar-colors.tpl'
 output_path = '~/.config/waybar/colors.css'
 post_hook = "~/.config/matugen/hooks/reload-waybar.sh"
 
@@ -41,16 +41,16 @@ output_path = '~/.config/spicetify/Themes/text/color-matugen.ini'
 
 
 [templates.gtk3]
-input_path = '~/.config/matugen/templates/matugen-gtk.css'
+input_path = '~/.config/matugen/templates/matugen-gtk.tpl'
 output_path = '~/.config/gtk-3.0/colors.css'
 post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'
 
 [templates.gtk4]
-input_path = '~/.config/matugen/templates/matugen-gtk.css'
+input_path = '~/.config/matugen/templates/matugen-gtk.tpl'
 output_path = '~/.config/gtk-4.0/colors.css'
 
 [templates.keyb]
-input_path = '~/.config/matugen/templates/keybcolors.css'
+input_path = '~/.config/matugen/templates/keybcolors.tpl'
 output_path = '~/.config/hypr/keybcolors.css'
 
 [templates.fuzzel]
@@ -58,11 +58,11 @@ input_path = '~/.config/matugen/templates/fuzzel-colors.ini'
 output_path = '~/.config/fuzzel/fuzzel.ini'
 
 [templates.swaync]
-input_path = '~/.config/matugen/templates/swaync-colors.css'
+input_path = '~/.config/matugen/templates/swaync-colors.tpl'
 output_path = '~/.config/swaync/colors.css'
 post_hook = "swaync-client -rs"
 
 [templates.ags]
-input_path = '~/.config/matugen/templates/ags-colors.css'
+input_path = '~/.config/matugen/templates/ags-colors.tpl'
 output_path = '~/.config/ags/colors.css'
 post_hook = "ags -q; ags &"
