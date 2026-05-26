@@ -7,8 +7,8 @@ https://github.com/user-attachments/assets/42859c7b-5c34-41d0-aebc-7b745d4ff733
 ## ⚡ One-Line Install
 
 ```bash
-git clone https://github.com/AKUMA107/cachyXhyprland-fried-rice.git
-cd cachyXhyprland-fried-rice
+git clone https://github.com/Jaat2727/Cachy_OS-Ricing-Script.git
+cd Cachy_OS-Ricing-Script
 chmod +x install.sh && ./install.sh
 ```
 
