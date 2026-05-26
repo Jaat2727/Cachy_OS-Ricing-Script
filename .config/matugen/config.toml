@@ -61,5 +61,5 @@ post_hook = "swaync-client -rs"
 
 [templates.ags]
 input_path = '~/.config/matugen/templates/ags-colors.tpl'
-output_path = '~/.config/ags/colors.css'
+output_path = '~/.config/ags/scss/_colors.scss'
 post_hook = "ags -q; ags &"
