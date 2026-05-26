@@ -23,7 +23,7 @@ sleep 0.1
 
 # CRITICAL STEP: Execute the main theme change script and redirect all its errors (stderr) to the log
 echo "3. Executing main theme script: ~/.config/hypr/change-wallpaper.sh" >> $LOG_FILE
-/home/daddyaddy/.config/hypr/change-wallpaper.sh 2>> $LOG_FILE
+"$HOME/.config/hypr/change-wallpaper.sh" 2>>$LOG_FILE
 
 # Check the exit code of the last command (change-wallpaper.sh)
 if [ $? -ne 0 ]; then

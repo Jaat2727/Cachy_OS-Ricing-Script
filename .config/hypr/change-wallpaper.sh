@@ -73,6 +73,25 @@ fi
 
 killall swww 2>/dev/null
 sleep 0.1
+
+# --- VM DETECTION ---
+# In VM environments, swww can crash due to GPU timing issues.
+# Add a small delay to let the virtualized graphics stack stabilize.
+is_vm() {
+    if command -v systemd-detect-virt &>/dev/null; then
+        [ "$(systemd-detect-virt)" != "none" ]
+    elif [ -f /sys/class/dmi/id/product_name ]; then
+        grep -qiE "virtualbox|vmware|qemu|kvm|hyperv" /sys/class/dmi/id/product_name 2>/dev/null
+    else
+        return 1
+    fi
+}
+
+if is_vm; then
+    echo "VM environment detected, adding delay for swww stability..."
+    sleep 2
+fi
+
 # --- 4. APPLY WALLPAPER AND THEME ---
 echo "Setting wallpaper: $WALL"
 swww img "$WALL" --transition-fps 60 --transition-duration 1 --transition-type grow

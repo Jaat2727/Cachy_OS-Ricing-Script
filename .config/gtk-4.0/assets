@@ -1,1 +1,6 @@
-/usr/share/themes/adw-gtk3-dark/gtk-4.0/assets
+# This should be a symlink to /usr/share/themes/adw-gtk3-dark/gtk-4.0/assets
+# On your target system, run:
+#   rm ~/.config/gtk-4.0/assets
+#   ln -s /usr/share/themes/adw-gtk3-dark/gtk-4.0/assets ~/.config/gtk-4.0/assets
+#
+# Git cannot store symlinks on Windows, so this file serves as documentation.

@@ -27,7 +27,7 @@
             "active": "",
             "default": ""
         },
-	"on-click": "/home/daddyaddy/.config/hypr/scripts/switch_and_theme.sh {id}",
+	"on-click": "~/.config/hypr/scripts/switch_and_theme.sh {id}",
         "persistent-workspaces": {
             "*": 5,       
             "HDMI-A-1": 3 

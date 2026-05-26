@@ -52,3 +52,17 @@ output_path = '~/.config/gtk-4.0/colors.css'
 [templates.keyb]
 input_path = '~/.config/matugen/templates/keybcolors.css'
 output_path = '~/.config/hypr/keybcolors.css'
+
+[templates.fuzzel]
+input_path = '~/.config/matugen/templates/fuzzel-colors.ini'
+output_path = '~/.config/fuzzel/fuzzel.ini'
+
+[templates.swaync]
+input_path = '~/.config/matugen/templates/swaync-colors.css'
+output_path = '~/.config/swaync/colors.css'
+post_hook = "swaync-client -rs"
+
+[templates.ags]
+input_path = '~/.config/matugen/templates/ags-colors.css'
+output_path = '~/.config/ags/colors.css'
+post_hook = "ags -q; ags &"
